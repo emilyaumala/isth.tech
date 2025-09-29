@@ -15,17 +15,17 @@
         :root {
             --primary-red: #dc2626;
             --dark-red: #991b1b;
-            --black: #0f0f0f;
-            --dark-gray: #1f1f1f;
-            --medium-gray: #3f3f3f;
-            --light-gray: #9ca3af;
+            --black: #000000;
+            --dark-gray: #1a1a1a;
+            --medium-gray: #6b7280;
+            --light-gray: #e5e7eb;
             --white: #ffffff;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--black);
-            color: var(--white);
+            background: var(--white);
+            color: var(--black);
             line-height: 1.6;
         }
 
@@ -34,10 +34,10 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(15, 15, 15, 0.95);
-            backdrop-filter: blur(10px);
+            background: var(--white);
             z-index: 1000;
-            border-bottom: 2px solid var(--primary-red);
+            border-bottom: 2px solid var(--medium-gray);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         nav {
@@ -52,12 +52,12 @@
         .logo {
             font-size: 1.8rem;
             font-weight: bold;
-            color: var(--white);
+            color: var(--black);
             text-decoration: none;
         }
 
         .logo span {
-            color: var(--primary-red);
+            color: var(--medium-gray);
         }
 
         .nav-links {
@@ -67,14 +67,14 @@
         }
 
         .nav-links a {
-            color: var(--white);
+            color: var(--black);
             text-decoration: none;
             transition: color 0.3s;
             font-weight: 500;
         }
 
         .nav-links a:hover {
-            color: var(--primary-red);
+            color: var(--medium-gray);
         }
 
         .menu-toggle {
@@ -87,7 +87,7 @@
         .menu-toggle span {
             width: 25px;
             height: 3px;
-            background: var(--primary-red);
+            background: var(--medium-gray);
             transition: 0.3s;
         }
 
@@ -97,7 +97,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, var(--black) 0%, var(--dark-gray) 100%);
+            background: linear-gradient(135deg, var(--white) 0%, var(--light-gray) 100%);
             position: relative;
             overflow: hidden;
         }
@@ -107,7 +107,7 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="%23dc2626" opacity="0.1"/></svg>') repeat;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="%23dc2626" opacity="0.05"/></svg>') repeat;
             animation: grid 20s linear infinite;
         }
 
@@ -127,15 +127,16 @@
             font-size: 3.5rem;
             margin-bottom: 1rem;
             animation: fadeInUp 1s ease;
+            color: var(--black);
         }
 
         .hero h1 span {
-            color: var(--primary-red);
+            color: var(--medium-gray);
         }
 
         .hero p {
             font-size: 1.3rem;
-            color: var(--light-gray);
+            color: var(--medium-gray);
             margin-bottom: 2rem;
             animation: fadeInUp 1s ease 0.2s backwards;
         }
@@ -143,7 +144,7 @@
         .cta-button {
             display: inline-block;
             padding: 1rem 2.5rem;
-            background: var(--primary-red);
+            background: var(--black);
             color: var(--white);
             text-decoration: none;
             border-radius: 5px;
@@ -153,7 +154,7 @@
         }
 
         .cta-button:hover {
-            background: var(--dark-red);
+            background: var(--medium-gray);
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
         }
@@ -174,18 +175,19 @@
             padding: 5rem 5%;
             max-width: 1400px;
             margin: 0 auto;
+            background: var(--white);
         }
 
         .section-title {
             text-align: center;
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            color: var(--white);
+            color: var(--black);
         }
 
         .section-subtitle {
             text-align: center;
-            color: var(--light-gray);
+            color: var(--medium-gray);
             margin-bottom: 4rem;
             font-size: 1.1rem;
         }
@@ -197,34 +199,34 @@
         }
 
         .service-card {
-            background: var(--dark-gray);
+            background: var(--white);
             padding: 2rem;
             border-radius: 10px;
-            border: 1px solid var(--medium-gray);
+            border: 2px solid var(--light-gray);
             transition: all 0.3s;
             cursor: pointer;
         }
 
         .service-card:hover {
             transform: translateY(-10px);
-            border-color: var(--primary-red);
-            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.2);
+            border-color: var(--medium-gray);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
         }
 
         .service-icon {
             font-size: 3rem;
-            color: var(--primary-red);
+            color: var(--medium-gray);
             margin-bottom: 1.5rem;
         }
 
         .service-card h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: var(--white);
+            color: var(--black);
         }
 
         .service-card p {
-            color: var(--light-gray);
+            color: var(--medium-gray);
             margin-bottom: 1rem;
         }
 
@@ -234,7 +236,7 @@
         }
 
         .service-features li {
-            color: var(--light-gray);
+            color: var(--medium-gray);
             padding: 0.3rem 0;
             padding-left: 1.5rem;
             position: relative;
@@ -244,14 +246,14 @@
             content: '✓';
             position: absolute;
             left: 0;
-            color: var(--primary-red);
+            color: var(--medium-gray);
             font-weight: bold;
         }
 
         /* About Section */
         .about {
             padding: 5rem 5%;
-            background: var(--dark-gray);
+            background: var(--light-gray);
         }
 
         .about-content {
@@ -266,10 +268,11 @@
         .about-text h2 {
             font-size: 2.5rem;
             margin-bottom: 1.5rem;
+            color: var(--black);
         }
 
         .about-text p {
-            color: var(--light-gray);
+            color: var(--medium-gray);
             margin-bottom: 1.5rem;
             line-height: 1.8;
         }
@@ -284,20 +287,27 @@
         .stat-item {
             text-align: center;
             padding: 1.5rem;
-            background: var(--black);
+            background: var(--white);
             border-radius: 10px;
-            border: 1px solid var(--medium-gray);
+            border: 2px solid var(--white);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
         }
 
         .stat-number {
             font-size: 2.5rem;
-            color: var(--primary-red);
+            color: var(--medium-gray);
             font-weight: bold;
             display: block;
         }
 
         .stat-label {
-            color: var(--light-gray);
+            color: var(--medium-gray);
             margin-top: 0.5rem;
         }
 
@@ -306,6 +316,7 @@
             padding: 5rem 5%;
             max-width: 1400px;
             margin: 0 auto;
+            background: var(--white);
         }
 
         .features-grid {
@@ -318,27 +329,37 @@
         .feature-item {
             text-align: center;
             padding: 2rem;
+            background: var(--white);
+            border-radius: 10px;
+            border: 2px solid var(--light-gray);
+            transition: all 0.3s;
+        }
+
+        .feature-item:hover {
+            border-color: var(--medium-gray);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .feature-icon {
             font-size: 3rem;
-            color: var(--primary-red);
+            color: var(--medium-gray);
             margin-bottom: 1rem;
         }
 
         .feature-item h3 {
             font-size: 1.3rem;
             margin-bottom: 1rem;
+            color: var(--black);
         }
 
         .feature-item p {
-            color: var(--light-gray);
+            color: var(--medium-gray);
         }
 
         /* Contact Section */
         .contact {
             padding: 5rem 5%;
-            background: var(--dark-gray);
+            background: var(--light-gray);
         }
 
         .contact-content {
@@ -363,26 +384,36 @@
             display: flex;
             align-items: start;
             gap: 1rem;
+            padding: 1.5rem;
+            background: var(--white);
+            border-radius: 10px;
+            border: 2px solid var(--white);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
         }
 
         .contact-item i {
             font-size: 1.5rem;
-            color: var(--primary-red);
+            color: var(--medium-gray);
             margin-top: 0.2rem;
         }
 
         .contact-item h4 {
             margin-bottom: 0.5rem;
+            color: var(--black);
         }
 
         .contact-item p {
-            color: var(--light-gray);
+            color: var(--medium-gray);
         }
 
         .contact-form {
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
         }
 
         .form-group {
@@ -392,16 +423,17 @@
 
         .form-group label {
             margin-bottom: 0.5rem;
-            color: var(--light-gray);
+            color: var(--black);
+            font-weight: 500;
         }
 
         .form-group input,
         .form-group textarea {
             padding: 1rem;
-            background: var(--black);
-            border: 1px solid var(--medium-gray);
+            background: var(--white);
+            border: 2px solid var(--light-gray);
             border-radius: 5px;
-            color: var(--white);
+            color: var(--black);
             font-family: inherit;
             transition: border-color 0.3s;
         }
@@ -409,7 +441,7 @@
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: var(--primary-red);
+            border-color: var(--medium-gray);
         }
 
         .form-group textarea {
@@ -419,7 +451,7 @@
 
         .submit-btn {
             padding: 1rem 2rem;
-            background: var(--primary-red);
+            background: var(--black);
             color: var(--white);
             border: none;
             border-radius: 5px;
@@ -430,15 +462,16 @@
         }
 
         .submit-btn:hover {
-            background: var(--dark-red);
+            background: var(--medium-gray);
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(220, 38, 38, 0.3);
         }
 
         /* Footer */
         footer {
             background: var(--black);
             padding: 3rem 5%;
-            border-top: 2px solid var(--primary-red);
+            border-top: 2px solid var(--medium-gray);
         }
 
         .footer-content {
@@ -451,7 +484,7 @@
 
         .footer-section h3 {
             margin-bottom: 1rem;
-            color: var(--primary-red);
+            color: var(--medium-gray);
         }
 
         .footer-section p,
@@ -493,7 +526,7 @@
             text-align: center;
             margin-top: 3rem;
             padding-top: 2rem;
-            border-top: 1px solid var(--medium-gray);
+            border-top: 1px solid var(--dark-gray);
             color: var(--light-gray);
         }
 
@@ -509,13 +542,14 @@
                 left: 0;
                 width: 100%;
                 flex-direction: column;
-                background: var(--black);
+                background: var(--white);
                 padding: 2rem;
                 gap: 1rem;
                 transform: translateY(-100%);
                 opacity: 0;
                 pointer-events: none;
                 transition: all 0.3s;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             }
 
             .nav-links.active {
