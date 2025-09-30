@@ -13,8 +13,8 @@
         }
 
         :root {
-            --primary-red: #dc2626;
-            --dark-red: #991b1b;
+            --primary-color: #6b7280;
+            --dark-color: #4b5563;
             --black: #000000;
             --dark-gray: #1a1a1a;
             --medium-gray: #6b7280;
@@ -36,7 +36,7 @@
             width: 100%;
             background: var(--white);
             z-index: 1000;
-            border-bottom: 2px solid var(--medium-gray);
+            border-bottom: 2px solid var(--primary-color);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
@@ -48,16 +48,24 @@
             max-width: 1400px;
             margin: 0 auto;
         }
-
-        .logo {
+		.logo {
             font-size: 1.8rem;
             font-weight: bold;
             color: var(--black);
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .logo img {
+            height: 50px;
+            width: 100px;
+            object-fit: contain;
         }
 
         .logo span {
-            color: var(--medium-gray);
+            color: var(--primary-color);
         }
 
         .nav-links {
@@ -74,7 +82,7 @@
         }
 
         .nav-links a:hover {
-            color: var(--medium-gray);
+            color: var(--primary-color);
         }
 
         .menu-toggle {
@@ -87,7 +95,7 @@
         .menu-toggle span {
             width: 25px;
             height: 3px;
-            background: var(--medium-gray);
+            background: var(--primary-color);
             transition: 0.3s;
         }
 
@@ -107,7 +115,7 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="%23dc2626" opacity="0.05"/></svg>') repeat;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="%236b7280" opacity="0.05"/></svg>') repeat;
             animation: grid 20s linear infinite;
         }
 
@@ -131,7 +139,7 @@
         }
 
         .hero h1 span {
-            color: var(--medium-gray);
+            color: var(--primary-color);
         }
 
         .hero p {
@@ -154,9 +162,9 @@
         }
 
         .cta-button:hover {
-            background: var(--medium-gray);
+            background: var(--dark-color);
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
+            box-shadow: 0 10px 25px rgba(107, 114, 128, 0.3);
         }
 
         @keyframes fadeInUp {
@@ -209,13 +217,13 @@
 
         .service-card:hover {
             transform: translateY(-10px);
-            border-color: var(--medium-gray);
+            border-color: var(--primary-color);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
         }
 
         .service-icon {
             font-size: 3rem;
-            color: var(--medium-gray);
+            color: var(--primary-color);
             margin-bottom: 1.5rem;
         }
 
@@ -246,7 +254,7 @@
             content: '✓';
             position: absolute;
             left: 0;
-            color: var(--medium-gray);
+            color: var(--primary-color);
             font-weight: bold;
         }
 
@@ -301,7 +309,7 @@
 
         .stat-number {
             font-size: 2.5rem;
-            color: var(--medium-gray);
+            color: var(--primary-color);
             font-weight: bold;
             display: block;
         }
@@ -336,13 +344,13 @@
         }
 
         .feature-item:hover {
-            border-color: var(--medium-gray);
+            border-color: var(--primary-color);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .feature-icon {
             font-size: 3rem;
-            color: var(--medium-gray);
+            color: var(--primary-color);
             margin-bottom: 1rem;
         }
 
@@ -393,7 +401,7 @@
 
         .contact-item i {
             font-size: 1.5rem;
-            color: var(--medium-gray);
+            color: var(--primary-color);
             margin-top: 0.2rem;
         }
 
@@ -441,7 +449,7 @@
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: var(--medium-gray);
+            border-color: var(--primary-color);
         }
 
         .form-group textarea {
@@ -462,16 +470,253 @@
         }
 
         .submit-btn:hover {
-            background: var(--medium-gray);
+            background: var(--dark-color);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(220, 38, 38, 0.3);
+            box-shadow: 0 5px 15px rgba(107, 114, 128, 0.3);
+        }
+
+        /* Chatbot Styles */
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1001;
+        }
+
+        .chat-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(107, 114, 128, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .chat-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(107, 114, 128, 0.5);
+        }
+
+        .chat-window {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            max-height: 500px;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-window.active {
+            display: flex;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chat-header {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h3 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        .chat-close {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+
+        .chat-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            max-height: 350px;
+            background: #f9fafb;
+        }
+
+        .message {
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.bot {
+            justify-content: flex-start;
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message-content {
+            max-width: 80%;
+            padding: 0.75rem 1rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .message.bot .message-content {
+            background: var(--white);
+            color: var(--black);
+            border: 1px solid var(--light-gray);
+        }
+
+        .message.user .message-content {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .quick-options {
+            padding: 0.5rem 1rem;
+            background: var(--white);
+            border-top: 1px solid var(--light-gray);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .quick-option {
+            padding: 0.5rem 1rem;
+            background: var(--light-gray);
+            border: none;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: var(--black);
+        }
+
+        .quick-option:hover {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .chat-input-container {
+            padding: 1rem;
+            background: var(--white);
+            border-top: 1px solid var(--light-gray);
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 2px solid var(--light-gray);
+            border-radius: 25px;
+            font-family: inherit;
+            font-size: 0.9rem;
+        }
+
+        .chat-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .chat-send {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .chat-send:hover {
+            background: var(--dark-color);
+            transform: scale(1.05);
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 0.75rem 1rem;
+            background: var(--white);
+            border: 1px solid var(--light-gray);
+            border-radius: 15px;
+            width: fit-content;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--medium-gray);
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
         }
 
         /* Footer */
         footer {
             background: var(--black);
             padding: 3rem 5%;
-            border-top: 2px solid var(--medium-gray);
+            border-top: 2px solid var(--primary-color);
         }
 
         .footer-content {
@@ -484,7 +729,7 @@
 
         .footer-section h3 {
             margin-bottom: 1rem;
-            color: var(--medium-gray);
+            color: var(--primary-color);
         }
 
         .footer-section p,
@@ -497,7 +742,7 @@
         }
 
         .footer-section a:hover {
-            color: var(--medium-gray);
+            color: var(--primary-color);
         }
 
         .social-links {
@@ -518,7 +763,7 @@
         }
 
         .social-links a:hover {
-            background: var(--medium-gray);
+            background: var(--primary-color);
             transform: translateY(-3px);
         }
 
@@ -574,14 +819,19 @@
             .stats {
                 grid-template-columns: 1fr;
             }
+
+            .chat-window {
+                width: 320px;
+            }
         }
+
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
         <nav>
-            <a href="#" class="logo">ISTH <span>Solutions</span></a>
+            <a href="#" class="logo"><img src="images/1.png" alt="ISTH Logo"></a>
             <ul class="nav-links">
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#servicios">Servicios</a></li>
@@ -615,7 +865,7 @@
                 <div class="service-icon">
                     <i class="fas fa-network-wired"></i>
                 </div>
-                <h3>Torres de Servicio</h3>
+                <h3>Servicios</h3>
                 <p>Infraestructura tecnológica robusta y confiable</p>
                 <ul class="service-features">
                     <li>Cableado estructurado</li>
@@ -643,7 +893,7 @@
                 <div class="service-icon">
                     <i class="fas fa-lock"></i>
                 </div>
-                <h3>Seguridad de la Información</h3>
+                <h3>Seguridad Informática</h3>
                 <p>Protección avanzada contra amenazas cibernéticas</p>
                 <ul class="service-features">
                     <li>Instalación de Firewall</li>
@@ -797,6 +1047,38 @@
         </div>
     </section>
 
+    <!-- Chatbot -->
+    <div class="chatbot-container">
+        <button class="chat-button" onclick="toggleChat()">
+            <i class="fas fa-comments"></i>
+        </button>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <h3>Asistente ISTH</h3>
+                <button class="chat-close" onclick="toggleChat()">×</button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot">
+                    <div class="message-content">
+                        ¡Hola! 👋 Soy el asistente virtual de ISTH. ¿En qué puedo ayudarte hoy?
+                    </div>
+                </div>
+            </div>
+            <div class="quick-options" id="quickOptions">
+                <button class="quick-option" onclick="sendQuickMessage('servicios')"> Servicios</button>
+                
+                <button class="quick-option" onclick="sendQuickMessage('contacto')"> Contacto</button>
+                <button class="quick-option" onclick="sendQuickMessage('horarios')"> Horarios</button>
+            </div>
+            <div class="chat-input-container">
+                <input type="text" class="chat-input" id="chatInput" placeholder="Escribe tu mensaje..." onkeypress="handleKeyPress(event)">
+                <button class="chat-send" onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
         <div class="footer-content">
@@ -812,9 +1094,9 @@
             </div>
             <div class="footer-section">
                 <h3>Servicios</h3>
-                <a href="#">Torres de Servicio</a>
+                <a href="#">Servicios</a>
                 <a href="#">Seguridad Física</a>
-                <a href="#">Seguridad de la Información</a>
+                <a href="#">Seguridad Informática</a>
                 <a href="#">Consultorías</a>
             </div>
             <div class="footer-section">
@@ -837,9 +1119,171 @@
     </footer>
 
     <script>
+        // Mobile menu toggle
         function toggleMenu() {
             const navLinks = document.querySelector('.nav-links');
             navLinks.classList.toggle('active');
+        }
+
+        // Chatbot functionality
+        function toggleChat() {
+            const chatWindow = document.getElementById('chatWindow');
+            chatWindow.classList.toggle('active');
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                addMessage(message, 'user');
+                input.value = '';
+                
+                setTimeout(() => {
+                    showTypingIndicator();
+                    setTimeout(() => {
+                        hideTypingIndicator();
+                        respondToMessage(message);
+                    }, 1500);
+                }, 300);
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function sendQuickMessage(type) {
+            const messages = {
+                'servicios': '¿Qué servicios ofrecen?',
+                'precios': '¿Cuánto cuestan sus servicios?',
+                'contacto': '¿Cómo puedo contactarlos?',
+                'horarios': '¿Cuál es su horario de atención?'
+            };
+            
+            const message = messages[type];
+            addMessage(message, 'user');
+            
+            setTimeout(() => {
+                showTypingIndicator();
+                setTimeout(() => {
+                    hideTypingIndicator();
+                    respondToMessage(message);
+                }, 1500);
+            }, 300);
+        }
+
+        function addMessage(text, sender) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            messageDiv.innerHTML = `<div class="message-content">${text}</div>`;
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            const messagesContainer = document.getElementById('chatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message bot';
+            typingDiv.id = 'typingIndicator';
+            typingDiv.innerHTML = `
+                <div class="typing-indicator">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            `;
+            messagesContainer.appendChild(typingDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+            const typingIndicator = document.getElementById('typingIndicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+
+        function respondToMessage(message) {
+            const lowerMessage = message.toLowerCase();
+            let response = '';
+
+            // Respuestas sobre servicios
+            if (lowerMessage.includes('servicio') || lowerMessage.includes('ofrecen') || lowerMessage.includes('hacen')) {
+                response = `Ofrecemos 4 áreas principales de servicio:
+
+ <strong>Servicios:</strong> Cableado estructurado, instalación de cámaras y diseño de red empresarial.
+
+ <strong>Seguridad Física:</strong> Vigilancia 24/7, cámaras HD, sistemas de alarmas y domótica.
+
+ <strong>Seguridad Informática:</strong> Firewall, IPS/IDS, WAF, Antispam y Antimalware.
+
+ <strong>Consultorías:</strong> Análisis ISO 27001, auditoría de redes, pentesting y SOC.`;
+            }
+            // Respuestas sobre precios
+            else if (lowerMessage.includes('precio') || lowerMessage.includes('costo') || lowerMessage.includes('cuánto') || lowerMessage.includes('cuanto')) {
+                response = ' Nuestros precios varían según las necesidades específicas de cada proyecto. Te recomiendo solicitar una consultoría gratuita para evaluar tu caso y ofrecerte una cotización personalizada. ¿Te gustaría que nos contactemos contigo?';
+            }
+            // Respuestas sobre contacto
+            else if (lowerMessage.includes('contacto') || lowerMessage.includes('contactar') || lowerMessage.includes('llamar') || lowerMessage.includes('email')) {
+                response = ` Puedes contactarnos por:
+
+<strong>Teléfono:</strong> +593 99 800 4442
+<strong>Email:</strong> servicios@isth.tech
+<strong>Ubicación:</strong> Quito, Ecuador
+
+También puedes llenar nuestro formulario de contacto en la página. ¡Responderemos en menos de 24 horas! `;
+            }
+            // Respuestas sobre horarios
+            else if (lowerMessage.includes('horario') || lowerMessage.includes('hora') || lowerMessage.includes('abierto') || lowerMessage.includes('atienden')) {
+                response = ` Nuestro horario de atención es:
+
+<strong>Lunes a Viernes:</strong> 8:00 AM - 6:00 PM
+<strong>Sábados:</strong> 9:00 AM - 1:00 PM
+
+ Contamos con soporte técnico 24/7 para emergencias.`;
+            }
+            // Respuestas sobre ciberseguridad
+            else if (lowerMessage.includes('ciberseguridad') || lowerMessage.includes('hacker') || lowerMessage.includes('firewall') || lowerMessage.includes('protección')) {
+                response = ' Nuestra área de Seguridad Informática incluye instalación de Firewall, sistemas IPS/IDS, WAF, Antispam, Antimalware y análisis GAP. Protegemos tu infraestructura contra amenazas cibernéticas avanzadas. ¿Te interesa una auditoría de seguridad?';
+            }
+            // Respuestas sobre cámaras
+            else if (lowerMessage.includes('cámara') || lowerMessage.includes('camara') || lowerMessage.includes('vigilancia') || lowerMessage.includes('monitoreo')) {
+                response = ' Ofrecemos instalación profesional de sistemas de vigilancia con cámaras HD, monitoreo 24/7 y tecnología de última generación. Incluye análisis de video inteligente y acceso remoto desde tu celular. ¿Necesitas proteger tu negocio o residencia?';
+            }
+            // Respuestas sobre ISO 27001
+            else if (lowerMessage.includes('iso') || lowerMessage.includes('27001') || lowerMessage.includes('certificación') || lowerMessage.includes('auditoría') || lowerMessage.includes('auditoria')) {
+                response = ' Brindamos consultorías especializadas en ISO 27001, auditorías de seguridad de redes, pentesting y configuración de Security Operation Centers (SOC). Nuestro equipo cuenta con certificaciones internacionales. ¿Buscas certificarte?';
+            }
+            // Respuestas sobre experiencia
+            else if (lowerMessage.includes('experiencia') || lowerMessage.includes('años') || lowerMessage.includes('proyectos')) {
+                response = ' Contamos con más de 10 años de experiencia y hemos completado exitosamente más de 150 proyectos. Nuestro índice de satisfacción del cliente es del 100%. Trabajamos con empresas de diversos sectores brindando soluciones personalizadas.';
+            }
+            // Respuestas sobre ubicación
+            else if (lowerMessage.includes('dónde') || lowerMessage.includes('donde') || lowerMessage.includes('ubicación') || lowerMessage.includes('ubicacion') || lowerMessage.includes('dirección')) {
+                response = ' Nos encontramos en Quito, Ecuador. Atendemos clientes en todo el país y podemos coordinar una visita técnica sin compromiso. ¿Te gustaría agendar una cita?';
+            }
+            // Respuestas sobre domótica
+            else if (lowerMessage.includes('domótica') || lowerMessage.includes('domotica') || lowerMessage.includes('automatización') || lowerMessage.includes('smart')) {
+                response = ' Implementamos soluciones de domótica inteligente que te permiten controlar iluminación, clima, seguridad y más desde tu smartphone. Integración total con asistentes de voz. ¿Quieres hacer tu hogar u oficina más inteligente?';
+            }
+            // Saludos
+            else if (lowerMessage.includes('hola') || lowerMessage.includes('buenos') || lowerMessage.includes('buenas')) {
+                response = '¡Hola!  ¿En qué puedo ayudarte hoy? Puedo informarte sobre nuestros servicios, precios, horarios o cualquier duda que tengas sobre ISTH.';
+            }
+            // Agradecimientos
+            else if (lowerMessage.includes('gracias') || lowerMessage.includes('grazie')) {
+                response = '¡Con mucho gusto!  Si tienes más preguntas, aquí estoy. También puedes contactarnos directamente para una consultoría personalizada.';
+            }
+            // Respuesta por defecto
+            else {
+                response = 'Interesante pregunta.  Te recomiendo contactarnos directamente para darte información más específica. Puedes llamarnos al +593 99 800 4442 o enviarnos un email a servicios@isth.tech. ¿Hay algo más en lo que pueda ayudarte?';
+            }
+
+            addMessage(response, 'bot');
         }
 
         // Smooth scrolling
@@ -852,7 +1296,6 @@
                         behavior: 'smooth',
                         block: 'start'
                     });
-                    // Close mobile menu if open
                     document.querySelector('.nav-links').classList.remove('active');
                 }
             });
