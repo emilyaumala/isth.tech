@@ -5,6 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -29,7 +31,6 @@
             line-height: 1.6;
         }
 
-        /* Header */
         header {
             position: fixed;
             top: 0;
@@ -48,7 +49,8 @@
             max-width: 1400px;
             margin: 0 auto;
         }
-		.logo {
+
+        .logo {
             font-size: 1.8rem;
             font-weight: bold;
             color: var(--black);
@@ -99,7 +101,6 @@
             transition: 0.3s;
         }
 
-        /* Hero Section */
         .hero {
             height: 100vh;
             display: flex;
@@ -178,7 +179,6 @@
             }
         }
 
-        /* Services Section */
         .services {
             padding: 5rem 5%;
             max-width: 1400px;
@@ -258,7 +258,6 @@
             font-weight: bold;
         }
 
-        /* About Section */
         .about {
             padding: 5rem 5%;
             background: var(--light-gray);
@@ -319,7 +318,6 @@
             margin-top: 0.5rem;
         }
 
-        /* Why Choose Us */
         .why-choose {
             padding: 5rem 5%;
             max-width: 1400px;
@@ -364,7 +362,6 @@
             color: var(--medium-gray);
         }
 
-        /* Contact Section */
         .contact {
             padding: 5rem 5%;
             background: var(--light-gray);
@@ -475,7 +472,43 @@
             box-shadow: 0 5px 15px rgba(107, 114, 128, 0.3);
         }
 
-        /* Chatbot Styles */
+        .submit-btn:disabled {
+            background: var(--medium-gray);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .form-message {
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 500;
+            animation: slideDown 0.3s ease;
+        }
+
+        .form-message.success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 2px solid #10b981;
+        }
+
+        .form-message.error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 2px solid #ef4444;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .chatbot-container {
             position: fixed;
             bottom: 20px;
@@ -712,7 +745,6 @@
             30% { transform: translateY(-10px); }
         }
 
-        /* Footer */
         footer {
             background: var(--black);
             padding: 3rem 5%;
@@ -775,7 +807,6 @@
             color: var(--light-gray);
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .menu-toggle {
                 display: flex;
@@ -824,11 +855,9 @@
                 width: 320px;
             }
         }
-
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <nav>
             <a href="#" class="logo"><img src="images/1.png" alt="ISTH Logo"></a>
@@ -846,7 +875,6 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero" id="inicio">
         <div class="hero-content">
             <h1>Integrando <span>Soluciones Tecnológicas</span></h1>
@@ -855,7 +883,6 @@
         </div>
     </section>
 
-    <!-- Services Section -->
     <section class="services" id="servicios">
         <h2 class="section-title">Nuestros Servicios</h2>
         <p class="section-subtitle">Soluciones tecnológicas adaptadas a las necesidades de tu empresa</p>
@@ -919,7 +946,6 @@
         </div>
     </section>
 
-    <!-- About Section -->
     <section class="about" id="nosotros">
         <div class="about-content">
             <div class="about-text">
@@ -948,7 +974,6 @@
         </div>
     </section>
 
-    <!-- Why Choose Us -->
     <section class="why-choose">
         <h2 class="section-title">¿Por Qué Elegirnos?</h2>
         <p class="section-subtitle">Comprometidos con la excelencia y la seguridad de tu empresa</p>
@@ -985,7 +1010,6 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section class="contact" id="contacto">
         <div class="contact-content">
             <h2 class="section-title">Contáctanos</h2>
@@ -1024,7 +1048,8 @@
                     </div>
                 </div>
 
-                <form class="contact-form">
+                <form class="contact-form" id="contactForm">
+                    <div id="formMessage"></div>
                     <div class="form-group">
                         <label for="name">Nombre</label>
                         <input type="text" id="name" name="name" required>
@@ -1041,13 +1066,12 @@
                         <label for="message">Mensaje</label>
                         <textarea id="message" name="message" required></textarea>
                     </div>
-                    <button type="submit" class="submit-btn">Enviar Mensaje</button>
+                    <button type="submit" class="submit-btn" id="submitBtn">Enviar Mensaje</button>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- Chatbot -->
     <div class="chatbot-container">
         <button class="chat-button" onclick="toggleChat()">
             <i class="fas fa-comments"></i>
@@ -1065,10 +1089,9 @@
                 </div>
             </div>
             <div class="quick-options" id="quickOptions">
-                <button class="quick-option" onclick="sendQuickMessage('servicios')"> Servicios</button>
-                
-                <button class="quick-option" onclick="sendQuickMessage('contacto')"> Contacto</button>
-                <button class="quick-option" onclick="sendQuickMessage('horarios')"> Horarios</button>
+                <button class="quick-option" onclick="sendQuickMessage('servicios')">📋 Servicios</button>
+                <button class="quick-option" onclick="sendQuickMessage('contacto')">📞 Contacto</button>
+                <button class="quick-option" onclick="sendQuickMessage('horarios')">🕐 Horarios</button>
             </div>
             <div class="chat-input-container">
                 <input type="text" class="chat-input" id="chatInput" placeholder="Escribe tu mensaje..." onkeypress="handleKeyPress(event)">
@@ -1079,7 +1102,6 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-section">
@@ -1119,13 +1141,62 @@
     </footer>
 
     <script>
-        // Mobile menu toggle
+        // ===== CONFIGURACIÓN DE EMAILJS =====
+        // IMPORTANTE: Reemplaza estos valores con tus credenciales de EmailJS
+        (function(){
+            emailjs.init("4lrGYx5vOCBafSpLb"); // Reemplaza con tu Public Key
+        })();
+
+        // ===== FORMULARIO DE CONTACTO =====
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const formMessage = document.getElementById('formMessage');
+            
+            // Deshabilitar botón durante el envío
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Enviando...';
+            
+            // Preparar los parámetros del template
+            const templateParams = {
+                from_name: document.getElementById('name').value,
+                from_email: document.getElementById('email').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+            
+            // Enviar email usando EmailJS
+            // IMPORTANTE: Reemplaza 'TU_SERVICE_ID' y 'TU_TEMPLATE_ID' con tus IDs
+            emailjs.send('service_vt4f9jj', 'template_ow5zxgd', templateParams)
+                .then(function(response) {
+                    // Éxito
+                    formMessage.innerHTML = '<div class="form-message success">✓ ¡Mensaje enviado exitosamente! Nos pondremos en contacto contigo pronto.</div>';
+                    document.getElementById('contactForm').reset();
+                    
+                    // Ocultar mensaje después de 5 segundos
+                    setTimeout(() => {
+                        formMessage.innerHTML = '';
+                    }, 5000);
+                }, function(error) {
+                    // Error
+                    formMessage.innerHTML = '<div class="form-message error">✗ Error al enviar el mensaje. Por favor, intenta nuevamente o contáctanos directamente.</div>';
+                    console.error('Error:', error);
+                })
+                .finally(function() {
+                    // Rehabilitar botón
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Enviar Mensaje';
+                });
+        });
+
+        // ===== MENÚ MÓVIL =====
         function toggleMenu() {
             const navLinks = document.querySelector('.nav-links');
             navLinks.classList.toggle('active');
         }
 
-        // Chatbot functionality
+        // ===== CHATBOT =====
         function toggleChat() {
             const chatWindow = document.getElementById('chatWindow');
             chatWindow.classList.toggle('active');
@@ -1158,7 +1229,6 @@
         function sendQuickMessage(type) {
             const messages = {
                 'servicios': '¿Qué servicios ofrecen?',
-                'precios': '¿Cuánto cuestan sus servicios?',
                 'contacto': '¿Cómo puedo contactarlos?',
                 'horarios': '¿Cuál es su horario de atención?'
             };
@@ -1211,82 +1281,50 @@
             const lowerMessage = message.toLowerCase();
             let response = '';
 
-            // Respuestas sobre servicios
             if (lowerMessage.includes('servicio') || lowerMessage.includes('ofrecen') || lowerMessage.includes('hacen')) {
-                response = `Ofrecemos 4 áreas principales de servicio:
-
- <strong>Servicios:</strong> Cableado estructurado, instalación de cámaras y diseño de red empresarial.
-
- <strong>Seguridad Física:</strong> Vigilancia 24/7, cámaras HD, sistemas de alarmas y domótica.
-
- <strong>Seguridad Informática:</strong> Firewall, IPS/IDS, WAF, Antispam y Antimalware.
-
- <strong>Consultorías:</strong> Análisis ISO 27001, auditoría de redes, pentesting y SOC.`;
+                response = `Ofrecemos 4 áreas principales de servicio:<br><br>📡 <strong>Servicios:</strong> Cableado estructurado, instalación de cámaras y diseño de red empresarial.<br><br>🛡️ <strong>Seguridad Física:</strong> Vigilancia 24/7, cámaras HD, sistemas de alarmas y domótica.<br><br>🔒 <strong>Seguridad Informática:</strong> Firewall, IPS/IDS, WAF, Antispam y Antimalware.<br><br>📋 <strong>Consultorías:</strong> Análisis ISO 27001, auditoría de redes, pentesting y SOC.`;
             }
-            // Respuestas sobre precios
             else if (lowerMessage.includes('precio') || lowerMessage.includes('costo') || lowerMessage.includes('cuánto') || lowerMessage.includes('cuanto')) {
-                response = ' Nuestros precios varían según las necesidades específicas de cada proyecto. Te recomiendo solicitar una consultoría gratuita para evaluar tu caso y ofrecerte una cotización personalizada. ¿Te gustaría que nos contactemos contigo?';
+                response = '💰 Nuestros precios varían según las necesidades específicas de cada proyecto. Te recomiendo solicitar una consultoría gratuita para evaluar tu caso y ofrecerte una cotización personalizada. ¿Te gustaría que nos contactemos contigo?';
             }
-            // Respuestas sobre contacto
             else if (lowerMessage.includes('contacto') || lowerMessage.includes('contactar') || lowerMessage.includes('llamar') || lowerMessage.includes('email')) {
-                response = ` Puedes contactarnos por:
-
-<strong>Teléfono:</strong> +593 99 800 4442
-<strong>Email:</strong> servicios@isth.tech
-<strong>Ubicación:</strong> Quito, Ecuador
-
-También puedes llenar nuestro formulario de contacto en la página. ¡Responderemos en menos de 24 horas! `;
+                response = `📞 Puedes contactarnos por:<br><br><strong>Teléfono:</strong> +593 99 800 4442<br><strong>Email:</strong> servicios@isth.tech<br><strong>Ubicación:</strong> Quito, Ecuador<br><br>También puedes llenar nuestro formulario de contacto en la página. ¡Responderemos en menos de 24 horas! ⚡`;
             }
-            // Respuestas sobre horarios
             else if (lowerMessage.includes('horario') || lowerMessage.includes('hora') || lowerMessage.includes('abierto') || lowerMessage.includes('atienden')) {
-                response = ` Nuestro horario de atención es:
-
-<strong>Lunes a Viernes:</strong> 8:00 AM - 6:00 PM
-<strong>Sábados:</strong> 9:00 AM - 1:00 PM
-
- Contamos con soporte técnico 24/7 para emergencias.`;
+                response = `🕐 Nuestro horario de atención es:<br><br><strong>Lunes a Viernes:</strong> 8:00 AM - 6:00 PM<br><strong>Sábados:</strong> 9:00 AM - 1:00 PM<br><br>⚡ Contamos con soporte técnico 24/7 para emergencias.`;
             }
-            // Respuestas sobre ciberseguridad
             else if (lowerMessage.includes('ciberseguridad') || lowerMessage.includes('hacker') || lowerMessage.includes('firewall') || lowerMessage.includes('protección')) {
-                response = ' Nuestra área de Seguridad Informática incluye instalación de Firewall, sistemas IPS/IDS, WAF, Antispam, Antimalware y análisis GAP. Protegemos tu infraestructura contra amenazas cibernéticas avanzadas. ¿Te interesa una auditoría de seguridad?';
+                response = '🔒 Nuestra área de Seguridad Informática incluye instalación de Firewall, sistemas IPS/IDS, WAF, Antispam, Antimalware y análisis GAP. Protegemos tu infraestructura contra amenazas cibernéticas avanzadas. ¿Te interesa una auditoría de seguridad?';
             }
-            // Respuestas sobre cámaras
             else if (lowerMessage.includes('cámara') || lowerMessage.includes('camara') || lowerMessage.includes('vigilancia') || lowerMessage.includes('monitoreo')) {
-                response = ' Ofrecemos instalación profesional de sistemas de vigilancia con cámaras HD, monitoreo 24/7 y tecnología de última generación. Incluye análisis de video inteligente y acceso remoto desde tu celular. ¿Necesitas proteger tu negocio o residencia?';
+                response = '📹 Ofrecemos instalación profesional de sistemas de vigilancia con cámaras HD, monitoreo 24/7 y tecnología de última generación. Incluye análisis de video inteligente y acceso remoto desde tu celular. ¿Necesitas proteger tu negocio o residencia?';
             }
-            // Respuestas sobre ISO 27001
             else if (lowerMessage.includes('iso') || lowerMessage.includes('27001') || lowerMessage.includes('certificación') || lowerMessage.includes('auditoría') || lowerMessage.includes('auditoria')) {
-                response = ' Brindamos consultorías especializadas en ISO 27001, auditorías de seguridad de redes, pentesting y configuración de Security Operation Centers (SOC). Nuestro equipo cuenta con certificaciones internacionales. ¿Buscas certificarte?';
+                response = '📋 Brindamos consultorías especializadas en ISO 27001, auditorías de seguridad de redes, pentesting y configuración de Security Operation Centers (SOC). Nuestro equipo cuenta con certificaciones internacionales. ¿Buscas certificarte?';
             }
-            // Respuestas sobre experiencia
             else if (lowerMessage.includes('experiencia') || lowerMessage.includes('años') || lowerMessage.includes('proyectos')) {
-                response = ' Contamos con más de 10 años de experiencia y hemos completado exitosamente más de 150 proyectos. Nuestro índice de satisfacción del cliente es del 100%. Trabajamos con empresas de diversos sectores brindando soluciones personalizadas.';
+                response = '⭐ Contamos con más de 10 años de experiencia y hemos completado exitosamente más de 150 proyectos. Nuestro índice de satisfacción del cliente es del 100%. Trabajamos con empresas de diversos sectores brindando soluciones personalizadas.';
             }
-            // Respuestas sobre ubicación
             else if (lowerMessage.includes('dónde') || lowerMessage.includes('donde') || lowerMessage.includes('ubicación') || lowerMessage.includes('ubicacion') || lowerMessage.includes('dirección')) {
-                response = ' Nos encontramos en Quito, Ecuador. Atendemos clientes en todo el país y podemos coordinar una visita técnica sin compromiso. ¿Te gustaría agendar una cita?';
+                response = '📍 Nos encontramos en Quito, Ecuador. Atendemos clientes en todo el país y podemos coordinar una visita técnica sin compromiso. ¿Te gustaría agendar una cita?';
             }
-            // Respuestas sobre domótica
             else if (lowerMessage.includes('domótica') || lowerMessage.includes('domotica') || lowerMessage.includes('automatización') || lowerMessage.includes('smart')) {
-                response = ' Implementamos soluciones de domótica inteligente que te permiten controlar iluminación, clima, seguridad y más desde tu smartphone. Integración total con asistentes de voz. ¿Quieres hacer tu hogar u oficina más inteligente?';
+                response = '🏠 Implementamos soluciones de domótica inteligente que te permiten controlar iluminación, clima, seguridad y más desde tu smartphone. Integración total con asistentes de voz. ¿Quieres hacer tu hogar u oficina más inteligente?';
             }
-            // Saludos
             else if (lowerMessage.includes('hola') || lowerMessage.includes('buenos') || lowerMessage.includes('buenas')) {
-                response = '¡Hola!  ¿En qué puedo ayudarte hoy? Puedo informarte sobre nuestros servicios, precios, horarios o cualquier duda que tengas sobre ISTH.';
+                response = '¡Hola! 👋 ¿En qué puedo ayudarte hoy? Puedo informarte sobre nuestros servicios, precios, horarios o cualquier duda que tengas sobre ISTH.';
             }
-            // Agradecimientos
             else if (lowerMessage.includes('gracias') || lowerMessage.includes('grazie')) {
-                response = '¡Con mucho gusto!  Si tienes más preguntas, aquí estoy. También puedes contactarnos directamente para una consultoría personalizada.';
+                response = '¡Con mucho gusto! 😊 Si tienes más preguntas, aquí estoy. También puedes contactarnos directamente para una consultoría personalizada.';
             }
-            // Respuesta por defecto
             else {
-                response = 'Interesante pregunta.  Te recomiendo contactarnos directamente para darte información más específica. Puedes llamarnos al +593 99 800 4442 o enviarnos un email a servicios@isth.tech. ¿Hay algo más en lo que pueda ayudarte?';
+                response = 'Interesante pregunta. 🤔 Te recomiendo contactarnos directamente para darte información más específica. Puedes llamarnos al +593 99 800 4442 o enviarnos un email a servicios@isth.tech. ¿Hay algo más en lo que pueda ayudarte?';
             }
 
             addMessage(response, 'bot');
         }
 
-        // Smooth scrolling
+        // ===== SMOOTH SCROLLING =====
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1301,14 +1339,7 @@ También puedes llenar nuestro formulario de contacto en la página. ¡Responder
             });
         });
 
-        // Form submission
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.');
-            this.reset();
-        });
-
-        // Animation on scroll
+        // ===== ANIMACIONES AL SCROLL =====
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -100px 0px'
