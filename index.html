@@ -309,32 +309,44 @@
             width: max-content;
         }
 
-        /* --- NUEVO CSS PARA EL SÍMBOLO INTERNO --- */
+        /* --- CSS MODIFICADO PARA IMAGEN --- */
         .service-symbol {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 2;
-            font-size: 2.5rem; /* Ajusta el tamaño del ícono interno */
-            color: var(--black); 
-            text-shadow: 0 2px 5px rgba(255, 255, 255, 0.7);
             transition: all 0.3s ease;
+            
+            /* Nuevos estilos para la imagen */
+            width: 60px; /* Ancho de la imagen */
+            height: 60px; /* Alto de la imagen */
+            background: var(--white);
+            border-radius: 50%; /* Hace el contenedor redondo */
+            padding: 8px; /* Espacio para que la imagen "respire" */
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
         }
-        /* --- FIN NUEVO CSS --- */
+
+        .service-symbol img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Asegura que la imagen quepa sin deformarse */
+        }
+        /* --- FIN CSS MODIFICADO --- */
 
         .service-item:hover .service-name {
             opacity: 1;
             visibility: visible;
             bottom: -45px;
         }
-        
-        /* --- NUEVO CSS PARA EL HOVER DEL SÍMBOLO --- */
+
+        /* --- CSS MODIFICADO PARA HOVER DE IMAGEN --- */
         .service-item:hover .service-symbol {
             transform: translate(-50%, -50%) scale(1.1);
-            color: #8B0000;
+            /* color: #8B0000; */ /* Ya no se usa para la imagen */
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.4); /* Sombra roja en hover */
         }
-        /* --- FIN NUEVO CSS --- */
+        /* --- FIN CSS MODIFICADO --- */
 
 
         .service-item:hover {
@@ -353,6 +365,7 @@
             left: 10px;
             animation: spin 20s linear infinite;
         }
+
         /* --- NUEVO CSS: ROTACIÓN INVERSA --- */
         .service-item[data-service="0"] .service-symbol {
             animation: spin-reverse 20s linear infinite;
@@ -373,9 +386,11 @@
             right: 25px;
             animation: spin-reverse 14s linear infinite;
         }
+
         /* --- NUEVO CSS: ROTACIÓN INVERSA --- */
         .service-item[data-service="1"] .service-symbol {
-            animation: spin 14s linear infinite; /* Inversa de spin-reverse */
+            animation: spin 14s linear infinite;
+            /* Inversa de spin-reverse */
         }
         /* --- FIN NUEVO CSS --- */
 
@@ -393,6 +408,7 @@
             right: 60px;
             animation: spin 16s linear infinite;
         }
+
         /* --- NUEVO CSS: ROTACIÓN INVERSA --- */
         .service-item[data-service="2"] .service-symbol {
             animation: spin-reverse 16s linear infinite;
@@ -413,9 +429,11 @@
             left: 60px;
             animation: spin-reverse 12s linear infinite;
         }
+
         /* --- NUEVO CSS: ROTACIÓN INVERSA --- */
         .service-item[data-service="3"] .service-symbol {
-            animation: spin 12s linear infinite; /* Inversa de spin-reverse */
+            animation: spin 12s linear infinite;
+            /* Inversa de spin-reverse */
         }
         /* --- FIN NUEVO CSS --- */
 
@@ -517,9 +535,12 @@
         }
 
         @keyframes pulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 opacity: 0.5;
             }
+
             50% {
                 opacity: 1;
             }
@@ -638,9 +659,12 @@
         }
 
         @keyframes float {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateY(0);
             }
+
             50% {
                 transform: translateY(-10px);
             }
@@ -661,9 +685,12 @@
         }
 
         @keyframes glow {
-            0%, 100% {
+
+            0%,
+            100% {
                 opacity: 0.5;
             }
+
             50% {
                 opacity: 1;
                 box-shadow: 0 0 20px var(--primary-color);
@@ -686,6 +713,7 @@
             from {
                 transform: rotate(0deg);
             }
+
             to {
                 transform: rotate(360deg);
             }
@@ -941,6 +969,7 @@
                 opacity: 0;
                 transform: translateY(-10px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -999,6 +1028,7 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -1059,6 +1089,7 @@
                 opacity: 0;
                 transform: translateY(10px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -1185,9 +1216,13 @@
         }
 
         @keyframes typing {
-            0%, 60%, 100% {
+
+            0%,
+            60%,
+            100% {
                 transform: translateY(0);
             }
+
             30% {
                 transform: translateY(-10px);
             }
@@ -1407,11 +1442,14 @@
                 letter-spacing: 1px;
             }
 
-            /* --- NUEVO CSS: RESPONSIVE SÍMBOLO --- */
+            /* --- CSS RESPONSIVE MODIFICADO PARA IMAGEN --- */
             .service-symbol {
-                font-size: 1.8rem;
+                /* font-size: 1.8rem; */ /* REEMPLAZADO */
+                width: 50px;
+                height: 50px;
+                padding: 6px;
             }
-            /* --- FIN NUEVO CSS --- */
+            /* --- FIN CSS MODIFICADO --- */
 
             .service-item[data-service="0"] {
                 top: 0;
@@ -1552,12 +1590,15 @@
             .wheel-center .center-text {
                 font-size: 1.3rem;
             }
-            
-            /* --- NUEVO CSS: RESPONSIVE SÍMBOLO --- */
+
+            /* --- CSS RESPONSIVE MODIFICADO PARA IMAGEN --- */
             .service-symbol {
-                font-size: 1.5rem;
+                 font-size: 1.5rem;  /* REEMPLAZADO */
+                width: 60px;
+                height: 60px;
+                padding: 5px;
             }
-            /* --- FIN NUEVO CSS --- */
+            /* --- FIN CSS MODIFICADO --- */
 
             .service-item[data-service="0"] .service-icon i {
                 font-size: 8.5rem;
@@ -1667,7 +1708,7 @@
                         <i class="fas fa-cog"></i>
                     </div>
                     <div class="service-symbol">
-                        <i class="fas fa-network-wired"></i>
+                        <img src="images/servicio_redes.png" alt="Servicios de Redes">
                     </div>
                     <div class="service-name">Servicios</div>
                 </div>
@@ -1677,7 +1718,7 @@
                         <i class="fas fa-cog"></i>
                     </div>
                     <div class="service-symbol">
-                        <i class="fas fa-shield-alt"></i>
+                        <img src="images/servicio_fisica.png" alt="Seguridad Física">
                     </div>
                     <div class="service-name">Seguridad Física</div>
                 </div>
@@ -1687,7 +1728,7 @@
                         <i class="fas fa-cog"></i>
                     </div>
                     <div class="service-symbol">
-                        <i class="fas fa-lock"></i>
+                        <img src="images/servicio_info.png" alt="Seguridad Informática">
                     </div>
                     <div class="service-name">Seguridad Informática</div>
                 </div>
@@ -1697,11 +1738,11 @@
                         <i class="fas fa-cog"></i>
                     </div>
                     <div class="service-symbol">
-                        <i class="fas fa-clipboard-check"></i>
+                        <img src="images/servicio_consult.png" alt="Consultorías">
                     </div>
                     <div class="service-name">Consultorías</div>
                 </div>
-            </div>
+                </div>
 
             <div class="service-details" id="serviceDetails">
                 <h3>
@@ -2049,14 +2090,14 @@
 
             setTimeout(() => {
                 detailsDiv.innerHTML = `
-                        <h3>
-                            <i class="fas ${service.icon}"></i>
-                            ${service.title}
-                        </h3>
-                        <p>${service.description}</p>
-                        <ul class="service-features">
-                            ${service.features.map(feature => `<li>${feature}</li>`).join('')}
-                        </ul>
+                            <h3>
+                                <i class="fas ${service.icon}"></i>
+                                ${service.title}
+                            </h3>
+                            <p>${service.description}</p>
+                            <ul class="service-features">
+                                ${service.features.map(feature => `<li>${feature}</li>`).join('')}
+                            </ul>
                 `;
                 detailsDiv.classList.add('active');
             }, 200);
