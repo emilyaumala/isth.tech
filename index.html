@@ -236,12 +236,14 @@
             align-items: center;
             justify-content: center;
             z-index: 5;
-            animation: spin 25s linear infinite;
+            /* SE QUITÓ LA ANIMACIÓN DE AQUÍ */
         }
 
         .wheel-center .service-icon {
             font-size: 9rem;
             position: relative;
+            /* SE AÑADIÓ LA ANIMACIÓN AQUÍ */
+            animation: spin 25s linear infinite;
         }
 
         .wheel-center .service-icon i {
@@ -307,11 +309,33 @@
             width: max-content;
         }
 
+        /* --- NUEVO CSS PARA EL SÍMBOLO INTERNO --- */
+        .service-symbol {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            font-size: 2.5rem; /* Ajusta el tamaño del ícono interno */
+            color: var(--black); 
+            text-shadow: 0 2px 5px rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+        /* --- FIN NUEVO CSS --- */
+
         .service-item:hover .service-name {
             opacity: 1;
             visibility: visible;
             bottom: -45px;
         }
+        
+        /* --- NUEVO CSS PARA EL HOVER DEL SÍMBOLO --- */
+        .service-item:hover .service-symbol {
+            transform: translate(-50%, -50%) scale(1.1);
+            color: #8B0000;
+        }
+        /* --- FIN NUEVO CSS --- */
+
 
         .service-item:hover {
             transform: scale(1.1);
@@ -329,6 +353,11 @@
             left: 10px;
             animation: spin 20s linear infinite;
         }
+        /* --- NUEVO CSS: ROTACIÓN INVERSA --- */
+        .service-item[data-service="0"] .service-symbol {
+            animation: spin-reverse 20s linear infinite;
+        }
+        /* --- FIN NUEVO CSS --- */
 
         .service-item[data-service="0"] .service-icon i {
             font-size: 14rem;
@@ -344,6 +373,11 @@
             right: 25px;
             animation: spin-reverse 14s linear infinite;
         }
+        /* --- NUEVO CSS: ROTACIÓN INVERSA --- */
+        .service-item[data-service="1"] .service-symbol {
+            animation: spin 14s linear infinite; /* Inversa de spin-reverse */
+        }
+        /* --- FIN NUEVO CSS --- */
 
         .service-item[data-service="1"] .service-icon i {
             font-size: 11rem;
@@ -359,6 +393,11 @@
             right: 60px;
             animation: spin 16s linear infinite;
         }
+        /* --- NUEVO CSS: ROTACIÓN INVERSA --- */
+        .service-item[data-service="2"] .service-symbol {
+            animation: spin-reverse 16s linear infinite;
+        }
+        /* --- FIN NUEVO CSS --- */
 
         .service-item[data-service="2"] .service-icon i {
             font-size: 10rem;
@@ -374,6 +413,11 @@
             left: 60px;
             animation: spin-reverse 12s linear infinite;
         }
+        /* --- NUEVO CSS: ROTACIÓN INVERSA --- */
+        .service-item[data-service="3"] .service-symbol {
+            animation: spin 12s linear infinite; /* Inversa de spin-reverse */
+        }
+        /* --- FIN NUEVO CSS --- */
 
         .service-item[data-service="3"] .service-icon i {
             font-size: 8rem;
@@ -1363,6 +1407,12 @@
                 letter-spacing: 1px;
             }
 
+            /* --- NUEVO CSS: RESPONSIVE SÍMBOLO --- */
+            .service-symbol {
+                font-size: 1.8rem;
+            }
+            /* --- FIN NUEVO CSS --- */
+
             .service-item[data-service="0"] {
                 top: 0;
                 left: -5px;
@@ -1502,6 +1552,12 @@
             .wheel-center .center-text {
                 font-size: 1.3rem;
             }
+            
+            /* --- NUEVO CSS: RESPONSIVE SÍMBOLO --- */
+            .service-symbol {
+                font-size: 1.5rem;
+            }
+            /* --- FIN NUEVO CSS --- */
 
             .service-item[data-service="0"] .service-icon i {
                 font-size: 8.5rem;
@@ -1610,12 +1666,18 @@
                     <div class="service-icon">
                         <i class="fas fa-cog"></i>
                     </div>
+                    <div class="service-symbol">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
                     <div class="service-name">Servicios</div>
                 </div>
 
                 <div class="service-item" data-service="1">
                     <div class="service-icon">
                         <i class="fas fa-cog"></i>
+                    </div>
+                    <div class="service-symbol">
+                        <i class="fas fa-shield-alt"></i>
                     </div>
                     <div class="service-name">Seguridad Física</div>
                 </div>
@@ -1624,12 +1686,18 @@
                     <div class="service-icon">
                         <i class="fas fa-cog"></i>
                     </div>
+                    <div class="service-symbol">
+                        <i class="fas fa-lock"></i>
+                    </div>
                     <div class="service-name">Seguridad Informática</div>
                 </div>
 
                 <div class="service-item" data-service="3">
                     <div class="service-icon">
                         <i class="fas fa-cog"></i>
+                    </div>
+                    <div class="service-symbol">
+                        <i class="fas fa-clipboard-check"></i>
                     </div>
                     <div class="service-name">Consultorías</div>
                 </div>
@@ -1981,14 +2049,14 @@
 
             setTimeout(() => {
                 detailsDiv.innerHTML = `
-                    <h3>
-                        <i class="fas ${service.icon}"></i>
-                        ${service.title}
-                    </h3>
-                    <p>${service.description}</p>
-                    <ul class="service-features">
-                        ${service.features.map(feature => `<li>${feature}</li>`).join('')}
-                    </ul>
+                        <h3>
+                            <i class="fas ${service.icon}"></i>
+                            ${service.title}
+                        </h3>
+                        <p>${service.description}</p>
+                        <ul class="service-features">
+                            ${service.features.map(feature => `<li>${feature}</li>`).join('')}
+                        </ul>
                 `;
                 detailsDiv.classList.add('active');
             }, 200);
